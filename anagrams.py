@@ -8,7 +8,7 @@
     for an arbitrary list of strings.
 
 """
-__author__ = "???"
+__author__ = "Sean Bailey, Chris Wilson, Koren Niles"
 
 import sys
 
@@ -24,7 +24,13 @@ def alphabetize(string):
         abc
 
     """
+
+    # with open('words/short.txt', 'r') as file:
+    #     data = file.read()
     return "".join(sorted(string.lower()))
+
+
+# print(alphabetize(file))
 
 
 def find_anagrams(words):
@@ -39,11 +45,15 @@ def find_anagrams(words):
         {'dgo': ['dog'], 'act': ['cat', 'act']}
 
     """
-    anagrams = {
-        alphabetize(word): [
-            w for w in words
-            if alphabetize(w) == alphabetize(word)]
-        for word in words}
+    anagrams = {}
+    # alphabetize(word): [
+    #         w for w in words
+    #         if alphabetize(w) == alphabetize(word)]
+    for word in words:
+        if alphabetize(word) in anagrams:
+            anagrams[alphabetize(word)].append(word)
+        else:
+            anagrams[alphabetize(word)] = [word]
     return anagrams
 
 
